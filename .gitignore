@@ -1,0 +1,32 @@
+# Python debug/check scripts
+check_*.py
+debug_*.py
+generate_*.py
+find_*.py
+fix_*.py
+*_fix.py
+*_generate*.py
+*_update*.py
+*_rebuild*.py
+verify_*.py
+test_*.py
+parse_*.py
+split_*.py
+copy_and_update.py
+final_generate.py
+final_update.py
+final_fix.py
+base64_fix.py
+regenerate_with_template.py
+safe_rebuild.py
+simple_generate.py
+rebuild_all_solutions.py
+rebuild_site.py
+update_js.js
+
+# Test HTML files
+test_*.html
+
+# Large debug data
+debug_problems.json
+debug_generate*.py

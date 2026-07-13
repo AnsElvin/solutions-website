@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>2026年程序设计实践例题题解</title>
+<style>
+* {margin:0;padding:0;box-sizing:border-box}
+body {font-family:'Segoe UI',sans-serif;background:linear-gradient(135deg,#0a0e1a 0%,#1e293b 50%,#0a0e1a 100%);color:#e0f2fe;line-height:1.6;min-height:100vh}
+.header {text-align:center;padding:60px 20px}
+.header h1 {font-size:3rem;color:#00d4ff;margin-bottom:15px;text-shadow:0 0 30px rgba(0,212,255,.5)}
+.header p {font-size:1.1rem;color:#7dd3fc;max-width:600px;margin:0 auto}
+.container {max-width:1200px;margin:0 auto;padding:20px}
+.stats {display:flex;justify-content:center;gap:30px;margin-bottom:40px}
+.stat-box {background:rgba(30,41,59,.6);border:1px solid rgba(0,212,255,.2);border-radius:12px;padding:25px 40px;text-align:center}
+.stat-box .num {font-size:2.5rem;color:#00d4ff;font-weight:bold}
+.stat-box .label {font-size:.9rem;color:#7dd3fc;margin-top:5px}
+.section {margin-bottom:50px}
+.section h2 {font-size:1.5rem;color:#22d3ee;margin-bottom:20px;padding-left:15px;border-left:4px solid #00d4ff}
+.grid {display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:20px}
+.card {background:rgba(30,41,59,.6);border:1px solid rgba(0,212,255,.2);border-radius:12px;padding:25px;transition:all .3s}
+.card:hover {border-color:#00d4ff;transform:translateY(-3px);box-shadow:0 10px 30px rgba(0,212,255,.15)}
+.card h3 {font-size:1.1rem;color:#00d4ff;margin-bottom:10px}
+.card .desc {font-size:.9rem;color:#94a3b8;margin-bottom:15px}
+.card .count {font-size:.85rem;color:#38bdf8;background:rgba(0,212,255,.1);padding:5px 12px;border-radius:20px;display:inline-block}
+.card a {display:inline-block;margin-top:15px;padding:10px 25px;background:#00d4ff;color:#0a0e1a;text-decoration:none;border-radius:8px;font-weight:bold;font-size:.9rem;transition:all .3s}
+.card a:hover {background:#22d3ee;transform:scale(1.05)}
+.tag-list {display:flex;flex-wrap:wrap;gap:10px;margin-top:15px}
+.tag {background:rgba(0,212,255,.1);color:#7dd3fc;padding:5px 12px;border-radius:20px;font-size:.8rem}
+.footer {text-align:center;padding:40px 20px;color:#38bdf8;font-size:.85rem}
+.footer a {color:#00d4ff;text-decoration:none}
+.footer a:hover {text-decoration:underline}
+.hero {position:relative;overflow:hidden;margin-bottom:50px}
+.hero::before {content:'';position:absolute;top:-50%;left:-50%;width:200%;height:200%;background:radial-gradient(circle,rgba(0,212,255,.1) 0%,transparent 70%);animation:spin 20s linear infinite}
+@keyframes spin {from{transform:rotate(0deg)}to{transform:rotate(360deg)}}
+.quick-links {display:flex;justify-content:center;gap:15px;margin-bottom:50px;flex-wrap:wrap}
+.quick-links a {padding:12px 28px;background:rgba(30,41,59,.6);border:1px solid rgba(0,212,255,.2);border-radius:25px;color:#7dd3fc;text-decoration:none;font-size:.95rem;transition:all .3s}
+.quick-links a:hover {background:#00d4ff;color:#0a0e1a;border-color:#00d4ff}
+</style>
+</head>
+<body>
+<div class="hero">
+<div class="header">
+<h1>📚 程序设计实践例题题解</h1>
+<p>2026年课程全部例题详解，包含算法分析、代码实现、测试用例与常见错误</p>
+</div>
+</div>
+
+<div class="stats">
+<div class="stat-box"><div class="num">55</div><div class="label">例题数量</div></div>
+<div class="stat-box"><div class="num">6</div><div class="label">章节分类</div></div>
+<div class="stat-box"><div class="num">2</div><div class="label">编程语言</div></div>
+<div class="stat-box"><div class="num">100%</div><div class="label">题目覆盖</div></div>
+</div>
+
+<div class="quick-links">
+<a href="all-solutions.html">查看全部题解</a>
+<a href="all-solutions.html#p01">算法初窥 (01-10)</a>
+<a href="all-solutions.html#p11">递归篇 (11-20)</a>
+<a href="all-solutions.html#p21">回溯篇 (21-30)</a>
+<a href="all-solutions.html#p31">算法篇 (31-40)</a>
+<a href="all-solutions.html#p41">综合挑战 (41-50)</a>
+<a href="all-solutions.html#p51">搜索之路 (51-55)</a>
+</div>
+
+<div class="container">
+<div class="section">
+<h2>📋 章节概览</h2>
+<div class="grid">
+<div class="card">
+<h3>算法初窥 (01-10)</h3>
+<p class="desc">数学计算与经典问题，包括A+B、排序、汉诺塔等</p>
+<div class="tag-list">
+<span class="tag">数学计算</span>
+<span class="tag">排序算法</span>
+<span class="tag">枚举法</span>
+</div>
+<span class="count">10道题目</span>
+<a href="all-solutions.html#p01">开始学习 →</a>
+</div>
+
+<div class="card">
+<h3>递归篇 (11-20)</h3>
+<p class="desc">深入递归思想，包括排列组合、N皇后、分治等问题</p>
+<div class="tag-list">
+<span class="tag">递归</span>
+<span class="tag">排列组合</span>
+<span class="tag">分治</span>
+</div>
+<span class="count">10道题目</span>
+<a href="all-solutions.html#p11">开始学习 →</a>
+</div>
+
+<div class="card">
+<h3>回溯篇 (21-30)</h3>
+<p class="desc">回溯算法应用，包括熄灯问题、拨钟问题、算24等</p>
+<div class="tag-list">
+<span class="tag">回溯</span>
+<span class="tag">状态压缩</span>
+<span class="tag">剪枝</span>
+</div>
+<span class="count">10道题目</span>
+<a href="all-solutions.html#p21">开始学习 →</a>
+</div>
+
+<div class="card">
+<h3>算法篇 (31-40)</h3>
+<p class="desc">经典算法实现，包括归并排序、二分查找、二分答案等</p>
+<div class="tag-list">
+<span class="tag">排序</span>
+<span class="tag">二分查找</span>
+<span class="tag">图论</span>
+</div>
+<span class="count">10道题目</span>
+<a href="all-solutions.html#p31">开始学习 →</a>
+</div>
+
+<div class="card">
+<h3>综合挑战 (41-50)</h3>
+<p class="desc">数独求解与位运算，包括林克系列题目与剪枝优化</p>
+<div class="tag-list">
+<span class="tag">数独</span>
+<span class="tag">位运算</span>
+<span class="tag">剪枝优化</span>
+</div>
+<span class="count">10道题目</span>
+<a href="all-solutions.html#p41">开始学习 →</a>
+</div>
+
+<div class="card">
+<h3>搜索之路 (51-55)</h3>
+<p class="desc">广度优先搜索实战，包括迷宫净化、最短路径、多源扩散等</p>
+<div class="tag-list">
+<span class="tag">BFS</span>
+<span class="tag">最短路径</span>
+<span class="tag">多源BFS</span>
+</div>
+<span class="count">5道题目</span>
+<a href="all-solutions.html#p51">开始学习 →</a>
+</div>
+</div>
+</div>
+
+<div class="section">
+<h2>🌟 重点题目推荐</h2>
+<div class="grid">
+<div class="card">
+<h3>题目01：A+B</h3>
+<p class="desc">程序设计的起点，掌握基本输入输出</p>
+<a href="all-solutions.html#p01">查看题解 →</a>
+</div>
+<div class="card">
+<h3>题目15：N皇后问题</h3>
+<p class="desc">经典回溯算法，理解递归与剪枝</p>
+<a href="all-solutions.html#p15">查看题解 →</a>
+</div>
+<div class="card">
+<h3>题目25：熄灯问题</h3>
+<p class="desc">状态压缩经典应用，位运算技巧</p>
+<a href="all-solutions.html#p25">查看题解 →</a>
+</div>
+<div class="card">
+<h3>题目31：归并排序</h3>
+<p class="desc">分治算法典范，掌握排序核心思想</p>
+<a href="all-solutions.html#p31">查看题解 →</a>
+</div>
+<div class="card">
+<h3>题目49：靶形数独</h3>
+<p class="desc">带分值计算的数独求解，追求最优解</p>
+<a href="all-solutions.html#p49">查看题解 →</a>
+</div>
+<div class="card">
+<h3>题目55：公主的攻击范围</h3>
+<p class="desc">多源BFS经典应用，最短距离场计算</p>
+<a href="all-solutions.html#p55">查看题解 →</a>
+</div>
+</div>
+</div>
+</div>
+
+<div class="footer">
+<p>© 2026 程序设计实践例题题解 | <a href="all-solutions.html">查看全部题解</a></p>
+</div>
+</body>
+</html>

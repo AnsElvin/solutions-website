@@ -1,0 +1,133 @@
+let currentSection = 'all';
+        let currentSearch = '';
+
+        function initSidebar() {
+            const nav = document.getElementById('sidebarNav');
+            const sections = {
+                '1-10': '第 01-10 题',
+                '11-20': '第 11-20 题',
+                '21-30': '第 21-30 题',
+                '31-40': '第 31-40 题',
+                '41-48': '第 41-48 题'
+            };
+
+            nav.innerHTML = '';
+
+            const filtered = getFilteredProblems();
+
+            let currentGroup = '';
+            filtered.forEach(p => {
+                if (p.section !== currentGroup) {
+                    currentGroup = p.section;
+                    const groupDiv = document.createElement('div');
+                    groupDiv.className = 'nav-group';
+                    const titleDiv = document.createElement('div');
+                    titleDiv.className = 'nav-group-title';
+                    titleDiv.textContent = sections[p.section] || p.section;
+                    groupDiv.appendChild(titleDiv);
+                    nav.appendChild(groupDiv);
+                }
+
+                const item = document.createElement('a');
+                item.className = 'nav-item';
+                item.textContent = p.id + '. ' + p.title.replace(/^题目\d+[：:]\s*/, '');
+                item.href = '#problem-' + p.id;
+                item.onclick = (e) => {
+                    e.preventDefault();
+                    scrollToProblem(p.id);
+                };
+                nav.lastElementChild.appendChild(item);
+            });
+        }
+
+        function getFilteredProblems() {
+            return problems.filter(p => {
+                if (currentSection !== 'all' && p.section !== currentSection) return false;
+                if (currentSearch) {
+                    const search = currentSearch.toLowerCase();
+                    if (!p.title.toLowerCase().includes(search) && !p.id.includes(search)) {
+                        return false;
+                    }
+                }
+                return true;
+            });
+        }
+
+        function renderProblems() {
+            const container = document.getElementById('problemContainer');
+            const filtered = getFilteredProblems();
+
+            if (filtered.length === 0) {
+                container.innerHTML = '<p style="text-align:center;color:var(--text-muted);padding:60px 0;">没有找到匹配的题目</p>';
+                return;
+            }
+
+            container.innerHTML = filtered.map(p => `
+                <section class="problem-section" id="problem-${p.id}">
+                    <div class="problem-header">
+                        <h1>${p.title}</h1>
+                        <div class="problem-meta">题目编号：${p.id}</div>
+                    </div>
+                    <div class="problem-content">${p.content}</div>
+                </section>
+            `).join('');
+        }
+
+        function showSection(section, btn) {
+            currentSection = section;
+            document.querySelectorAll('.tag-btn').forEach(b => b.classList.remove('active'));
+            if (btn) btn.classList.add('active');
+            initSidebar();
+            renderProblems();
+        }
+
+        function filterProblems() {
+            currentSearch = document.getElementById('searchInput').value.trim();
+            initSidebar();
+            renderProblems();
+        }
+
+        function scrollToProblem(id) {
+            const element = document.getElementById('problem-' + id);
+            if (element) {
+                element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                // 高亮当前项
+                document.querySelectorAll('.nav-item').forEach(item => item.classList.remove('active'));
+                const navItem = document.querySelector(`.nav-item[href="#problem-${id}"]`);
+                if (navItem) navItem.classList.add('active');
+            }
+        }
+
+        function scrollToTop() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // 返回顶部按钮
+        window.addEventListener('scroll', () => {
+            const btn = document.getElementById('backToTop');
+            btn.style.display = window.scrollY > 300 ? 'flex' : 'none';
+
+            // 更新当前激活的导航项
+            const sections = document.querySelectorAll('.problem-section');
+            let current = '';
+            sections.forEach(section => {
+                const rect = section.getBoundingClientRect();
+                if (rect.top <= 100) {
+                    current = section.id;
+                }
+            });
+            if (current) {
+                document.querySelectorAll('.nav-item').forEach(item => item.classList.remove('active'));
+                const navItem = document.querySelector(`.nav-item[href="#${current}"]`);
+                if (navItem) navItem.classList.add('active');
+            }
+        });
+
+        // 初始化
+        window.addEventListener('DOMContentLoaded', () => {
+            initSidebar();
+            renderProblems();
+        });
+    </script>
+</body>
+</html>
